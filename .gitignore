@@ -1,0 +1,15 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea
+webapp/static/css/*
+webapp/static/fonts/*
+webapp/static/html/*
+webapp/static/images/*
+webapp/static/js/*
+webapp/static/vendor/*
+!webapp/static/css/.gitkeep
+!webapp/static/fonts/.gitkeep
+!webapp/static/html/.gitkeep
+!webapp/static/images/.gitkeep
+!webapp/static/js/.gitkeep
+!webapp/static/vendor/.gitkeep
+node_modules

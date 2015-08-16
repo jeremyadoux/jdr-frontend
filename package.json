@@ -1,0 +1,26 @@
+{
+  "name": "frontend-my-bouffe",
+  "version": "1.1.2",
+  "description": "Social project starter",
+  "repository": {
+    "type": "git"
+  },
+  "author": "Visiativ",
+  "homepage": "http://www.visiativ.com",
+  "devDependencies": {
+    "bower": "latest",
+    "grunt": "~0.4.2",
+    "grunt-cli": "latest",
+    "git": "latest",
+    "git-cli": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-bower-task": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-includes": "latest",
+    "grunt-newer": "latest"
+  }
+}

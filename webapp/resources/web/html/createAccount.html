@@ -1,0 +1,61 @@
+include "header.html"
+
+
+<div ng-controller="UserController" id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="text-center">Bienvenue sur myBouffe@Visiativ</h1>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-center">Inscrivez-vous !</h3>
+                <form name="createAccountForm" id="createAccountForm" ng-submit="createUserAction()" novalidate method="POST" class="form col-md-12 center-block">
+                    <div ng-controller="UserController">
+                        <div class="form-group">
+                            <input type="text" ng-required="true" class="form-control" ng-model="firstname" id="firstname" placeholder="Saisissez votre prénom">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" ng-required="true" class="form-control" ng-model="lastname" id="lastname" placeholder="Saisissez votre nom">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" ng-required="true" class="form-control" ng-model="pseudo" id="pseudo" placeholder="Saisissez votre pseudo">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" ng-required="true" class="form-control" ng-model="email" id="email" placeholder="Saisissez votre email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" ng-required="true" class="form-control" ng-model="phone" id="phone" placeholder="Saisissez votre téléphone professionnel">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" ng-required="true" class="form-control" ng-model="password" id="password" placeholder="Saisissez votre mot de passe">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">De quel service faites-vous partie ?</label>
+                            <select ng-model="service" convert-to-number name="service" id="service">
+                                <option value="0">R&D</option>
+                                <option value="1">Services</option>
+                                <option value="2">Usages et Solutions</option>
+                                <option value="3">Autres</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="car" ng-model="car" id="car" />
+                            <label for="car">J'ai une voiture</label>
+                        </div>
+
+                        <div class="form-group">
+                            <button ng-disabled="createAccountForm.$invalid" class="btn btn-primary pull-right" type="submit">S'enregistrer</button>
+                            <!--<span class="pull-right"><a href="#">Register</a></span><span><a href="#">Need help?</a></span>-->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="col-md-12">
+                    <!--<button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+include "footer.html"
