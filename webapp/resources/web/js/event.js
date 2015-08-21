@@ -34,6 +34,7 @@ module.controller('EventController', function($scope) {
     $scope.uiConfig = {
         calendar:{
             height: 450,
+            width: 700,
             editable: true,
             header:{
                 left: 'title',
@@ -48,4 +49,9 @@ module.controller('EventController', function($scope) {
     };
 
     $scope.eventSources = [$scope.events];
+
+    $scope.titlePlaceholder = "Titre de l'evenement";
+    $scope.startPlaceholder = "Date de debut";
+    $scope.endPlaceholder = "Date de fin";
+
 });

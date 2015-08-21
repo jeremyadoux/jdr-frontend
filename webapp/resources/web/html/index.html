@@ -18,25 +18,20 @@ include "header.html"
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href ng-click="main.setActivePage('accueil.html')">Accueil</a>
+                    <a href ng-click="setActivePage('accueil.html')">Accueil</a>
                 </li>
                 <li>
-                    <a href ng-click="main.setActivePage('mur.html')">Mur de messages</a>
+                    <a href ng-click="setActivePage('mur.html')">Mur de messages</a>
                 </li>
                 <li>
-                    <a href ng-click="main.setActivePage('chronique.html')">Chronique</a>
+                    <a href ng-click="setActivePage('chronique.html')">Chronique</a>
                 </li>
                 <li>
-                    <a href ng-click="main.setActivePage('calendar.html')">Calendrier</a>
+                    <a href ng-click="setActivePage('calendar.html')">Calendrier</a>
                 </li>
                 <li>
-                    <a href ng-click="main.setActivePage('mj.html')">MJ</a>
+                    <a href ng-click="setActivePage('mj.html')">MJ</a>
                 </li>
-                <!--
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
-                </li>
-                -->
             </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -48,7 +43,7 @@ include "header.html"
     <div class="header-content">
         <div class="header-content-inner">
 
-            <div ng-include="main.activePage"></div>
+            <div ng-include="this.activePage"></div>
 
         </div>
     </div>

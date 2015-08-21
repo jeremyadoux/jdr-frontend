@@ -124,6 +124,7 @@ aside {
     .navbar-default .navbar-header .navbar-brand {
         font-family: "Marigold";
         color: #fff;
+        outline: 0;
     }
 
     .navbar-default .navbar-header .navbar-brand:hover,
@@ -135,6 +136,7 @@ aside {
     .navbar-default .nav>li>a:focus {
         font-family: "Marigold";
         color: #fff;
+        outline: 0;
     }
 
     .navbar-default .nav > li>a:hover,
@@ -476,7 +478,8 @@ body {
 }
 
 .box {
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255,255,255,0.4);
+    padding: 20px;
 }
 
 /* custom lbe */
