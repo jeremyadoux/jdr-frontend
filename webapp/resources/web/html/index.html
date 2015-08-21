@@ -1,4 +1,5 @@
 include "header.html"
+
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -17,13 +18,19 @@ include "header.html"
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="page-scroll" href="#services">MEnu1</a>
+                    <a href ng-click="main.setActivePage('accueil.html')">Accueil</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#order">MEnu2</a>
+                    <a href ng-click="main.setActivePage('mur.html')">Mur de messages</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#today-offers">Menu3</a>
+                    <a href ng-click="main.setActivePage('chronique.html')">Chronique</a>
+                </li>
+                <li>
+                    <a href ng-click="main.setActivePage('calendar.html')">Calendrier</a>
+                </li>
+                <li>
+                    <a href ng-click="main.setActivePage('mj.html')">MJ</a>
                 </li>
                 <!--
                 <li>
@@ -40,8 +47,9 @@ include "header.html"
 <header>
     <div class="header-content">
         <div class="header-content-inner">
-            <h1>Bienvenue sur le site du jdr</h1>
-            <hr>
+
+            <div ng-include="main.activePage"></div>
+
         </div>
     </div>
 </header>
