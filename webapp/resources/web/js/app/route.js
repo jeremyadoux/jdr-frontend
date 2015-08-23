@@ -22,6 +22,18 @@ module.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
             controller: 'LogoutController',
             authenticate: true
         })
+        .state('group-list', {
+            url: '/group/list',
+            controller: 'GroupListController',
+            templateUrl: 'group-list.html',
+            authenticate: true
+        })
+        .state('group-detail', {
+            url: '/group/:id',
+            controller: 'GroupDetailController',
+            templateUrl: 'group-detail.html',
+            authenticate: true
+        })
         .state('register', {
             url: '/register',
             templateUrl: 'createAccount.html',

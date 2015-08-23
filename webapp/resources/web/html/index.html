@@ -18,6 +18,9 @@ include "header.html"
                 <a ui-sref="event" ui-sref-active="active">Evènements</a>
             </li>
             <li ng-show="currentUser">
+                <a ui-sref="group-list" ui-sref-active="active">Groupes</a>
+            </li>
+            <li ng-show="currentUser">
                 <a ui-sref="logout" ui-sref-active="active">Se déconnecter</a>
             </li>
         </ul>
