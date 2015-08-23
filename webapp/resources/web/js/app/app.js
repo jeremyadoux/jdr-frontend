@@ -1,6 +1,6 @@
 
 // Initialize main Angular module
-var module = angular.module('app', ['ngCookies', 'ui.calendar']);
+var module = angular.module('app', ['ngCookies', 'ui.calendar', 'lbServices']);
 
 var getUrlParameter = function(sParam)
 {
