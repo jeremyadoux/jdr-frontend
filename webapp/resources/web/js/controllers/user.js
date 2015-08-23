@@ -2,13 +2,7 @@
  * Created by jadoux on 01/07/2015.
  */
 
-module.controller('UserController', ['$scope', 'AuthService',
-    function($scope, AuthService) {
-    $scope.user = {
-        email: 'foo@bar.com',
-        password: 'foobar'
-    };
-
+module.controller('UserController', ['$scope', 'AuthService', function($scope, AuthService) {
     $scope.login = function() {
         AuthService.login($scope.user.email, $scope.user.password)
             .then(function() {
