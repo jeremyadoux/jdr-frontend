@@ -1,52 +1,29 @@
 include "header.html"
 
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header" ng-controller="UserController">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand page-scroll" href="#page-top">Bienvenue <span ng-show="currentUser">{{currentUser.firstname}} {{currentUser.lastname}}</span></a>
-
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href ng-click="setActivePage('accueil.html')">Accueil</a>
-                </li>
-                <li>
-                    <a href ng-click="setActivePage('mur.html')">Mur de messages</a>
-                </li>
-                <li>
-                    <a href ng-click="setActivePage('chronique.html')">Chronique</a>
-                </li>
-                <li>
-                    <a href ng-click="setActivePage('calendar.html')">Calendrier</a>
-                </li>
-                <li>
-                    <a href ng-click="setActivePage('mj.html')">MJ</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-
 <header>
-    <div class="header-content">
-        <div class="header-content-inner">
-
-            <div ng-include="this.activePage"></div>
-
-        </div>
-    </div>
+    <h1>JDR</h1>
+    <h2 ng-show="currentUser">Bonjour {{currentUser.email}}</h2>
+    <nav>
+        <ul>
+            <li ng-show="currentUser">
+                <a ui-sref="home" ui-sref-active="active">Accueil</a>
+            </li>
+            <li ng-hide="currentUser">
+                <a ui-sref="login" ui-sref-active="active">Connexion</a>
+            </li>
+            <li ng-hide="currentUser">
+                <a ui-sref="register" ui-sref-active="active">Créer un compte</a>
+            </li>
+            <li ng-show="currentUser">
+                <a ui-sref="event" ui-sref-active="active">Evènements</a>
+            </li>
+            <li ng-show="currentUser">
+                <a ui-sref="logout" ui-sref-active="active">Se déconnecter</a>
+            </li>
+        </ul>
+    </nav>
 </header>
+
+<main ui-view></main>
 
 include "footer.html"

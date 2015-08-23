@@ -13,6 +13,7 @@
     "ngDialog" : "latest",
     "angular-cookies": "latest",
     "angular-resource" : "latest",
+    "angular-ui-router" : "latest",
     "underscore" : "latest",
     "angular-ui-calendar": "master",
     "jquery.easing": "latest",

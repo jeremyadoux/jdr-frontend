@@ -5889,13 +5889,13 @@ module
       props.forEach(function(name) {
         self[name] = load(name);
       });
-      this.rememberMe = undefined;
+      this.rememberMe = true;
       this.currentUserData = null;
     }
 
     LoopBackAuth.prototype.save = function() {
       var self = this;
-      var storage = this.rememberMe ? localStorage : sessionStorage;
+      var storage = true ? localStorage : sessionStorage;
       props.forEach(function(name) {
         save(storage, name, self[name]);
       });

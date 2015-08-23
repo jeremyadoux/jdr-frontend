@@ -2,19 +2,18 @@
  * Created by jadoux on 01/07/2015.
  */
 
-module.controller('UserController', ['$scope', 'AuthService', function($scope, AuthService) {
+module.controller('UserController', ['$scope', '$state', 'AuthService', function($scope, $state, AuthService) {
     $scope.login = function() {
         AuthService.login($scope.user.email, $scope.user.password)
             .then(function() {
-                console.log('plop');
-                //$state.go('add-review');
+                $state.go('home');
             });
     };
 
     $scope.logout = function() {
         AuthService.logout()
             .then(function() {
-                //$state.go('all-reviews');
+                $state.go('login');
             });
     };
 
@@ -24,4 +23,11 @@ module.controller('UserController', ['$scope', 'AuthService', function($scope, A
                 //$state.transitionTo('sign-up-success');
             });
     };
+}]);
+
+module.controller('LogoutController', ['$scope', '$state', 'AuthService', function($scope, $state, AuthService) {
+    AuthService.logout()
+        .then(function() {
+            $state.go('login');
+        });
 }]);
