@@ -7,6 +7,14 @@ module.factory('GroupService', ['Group', '$q', '$stateParams', function(Group, $
             });
     }
 
+    function findAll() {
+        return Group.find({filter:{ order: 'created DESC' }})
+            .$promise
+            .then(function(response) {
+                return response;
+            });
+    }
+
     function findGroup(id) {
         return Group.findById( {id: id} )
             .$promise
@@ -17,6 +25,7 @@ module.factory('GroupService', ['Group', '$q', '$stateParams', function(Group, $
 
     return {
         createGroup: createGroup,
+        findAll: findAll,
         findGroup: findGroup
     };
 }]);

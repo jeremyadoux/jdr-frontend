@@ -1,14 +1,58 @@
-<h3 class="text-center">La liste des groupes</h3>
-<form name="createGroupForm" id="loginForm" ng-submit="createGroup()" novalidate method="POST" class="form col-md-12 center-block">
-    <div>
-        <div class="form-group">
-            <input type="text" ng-required="true" class="form-control input-lg" ng-model="group.title" id="title" placeholder="Saisissez un titre">
-        </div>
-        <div class="form-group">
-            <textarea type="text" class="form-control input-lg" ng-model="group.description" id="description" placeholder="Saisissez une description"></textarea>
-        </div>
-        <div class="form-group">
-            <button ng-disabled="createGroupForm.$invalid" class="btn btn-primary pull-right btn-lg btn-block" type="submit">Créer le groupe</button>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-home"></i> Groupes</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i>Accueil</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 portlets">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="pull-left">Créer un groupe</div>
+                <div class="widget-icons pull-right">
+                    <a class="wminimize" href ng-click="showCreateGroup = !showCreateGroup"><i class="fa fa-chevron-up"></i></a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-body" ng-show="showCreateGroup">
+                <div class="padd">
+
+                    <div class="form quick-post">
+                        <form name="createGroupForm" id="loginForm" ng-submit="createGroup()" novalidate method="POST" class="form-horizontal">
+                            <!-- Title -->
+                            <div class="form-group">
+                                <label for="title" class="control-label col-lg-2">Titre</label>
+                                <div class="col-lg-10">
+                                    <input type="text" id="title" class="form-control" ng-required="true" ng-model="group.title">
+                                </div>
+                            </div>
+                            <!-- Content -->
+                            <div class="form-group">
+                                <label for="content" class="control-label col-lg-2">Description</label>
+                                <div class="col-lg-10">
+                                    <textarea id="content" class="form-control" ng-model="group.description"></textarea>
+                                </div>
+                            </div>
+                            <!-- Buttons -->
+                            <div class="form-group">
+                                <!-- Buttons -->
+                                <div class="col-lg-offset-2 col-lg-9">
+                                    <button ng-disabled="createGroupForm.$invalid" class="btn btn-primary" type="submit">Créer</button>
+                                    <button class="btn btn-default" type="reset">RAZ</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+                <div class="widget-foot">
+                    <!-- Footer goes here -->
+                </div>
+            </div>
         </div>
     </div>
-</form>
+
+</div>
