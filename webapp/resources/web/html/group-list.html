@@ -54,5 +54,22 @@
             </div>
         </div>
     </div>
+</div>
 
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">
+                Liste des groupes
+            </header>
+            <div class="list-group">
+                <span ng-repeat="group in groups">
+                    <a ui-sref="group-detail({id:group.id})" class="list-group-item ">
+                        <h4 class="list-group-item-heading" ng-bind="group.title"></h4>
+                        <p class="list-group-item-text" ng-bind="group.description"></p>
+                    </a>
+                </span>
+            </div>
+        </section>
+    </div>
 </div>

@@ -8,7 +8,7 @@ module.factory('GroupService', ['Group', '$q', '$stateParams', function(Group, $
     }
 
     function findAll() {
-        return Group.find({filter:{ order: 'created DESC' }})
+        return Group.find({filter:{ order: 'created DESC', where: {status: true} }})
             .$promise
             .then(function(response) {
                 return response;

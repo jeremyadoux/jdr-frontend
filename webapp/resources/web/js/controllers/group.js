@@ -1,4 +1,6 @@
 module.controller('GroupListController', ["$scope", "GroupService", "$state", function($scope, GroupService, $state) {
+    $scope.groups = [];
+
     $scope.createGroup =  function() {
         GroupService.createGroup($scope.group.title, $scope.group.description)
             .then(function(group) {
@@ -8,7 +10,7 @@ module.controller('GroupListController', ["$scope", "GroupService", "$state", fu
 
     $scope.listGroup = function() {
         GroupService.findAll().then(function(groups) {
-            console.log(groups);
+            $scope.groups = groups;
         });
     };
 
