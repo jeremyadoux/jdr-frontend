@@ -25,73 +25,31 @@
 
                     <ul class="chats">
 
-                        <!-- Chat by us. Use the class "by-me". -->
-                        <li class="by-me">
+                        <!-- Chat by us. Use the class "by-me". Chat by other. Use the class "by-other". -->
+                        <li class="by-me" ng-repeat="message in messages">
                             <!-- Use the class "pull-left" in avatar -->
                             <div class="avatar pull-left">
-                                <img alt="" src="img/user.jpg">
+                                <!--<img alt="" src="img/user.jpg">-->
                             </div>
 
                             <div class="chat-content">
                                 <!-- In meta area, first include "name" and then "time" -->
                                 <div class="chat-meta">John Smith <span class="pull-right">3 hours ago</span></div>
-                                Vivamus diam elit diam, consectetur dapibus adipiscing elit.
+                                <span ng-bind="message.content"></span>
                                 <div class="clearfix"></div>
                             </div>
                         </li>
-
-                        <!-- Chat by other. Use the class "by-other". -->
-                        <li class="by-other">
-                            <!-- Use the class "pull-right" in avatar -->
-                            <div class="avatar pull-right">
-                                <img alt="" src="img/user22.png">
-                            </div>
-
-                            <div class="chat-content">
-                                <!-- In the chat meta, first include "time" then "name" -->
-                                <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
-                                Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
-                                <div class="clearfix"></div>
-                            </div>
-                        </li>
-
-                        <li class="by-me">
-                            <div class="avatar pull-left">
-                                <img alt="" src="img/user.jpg">
-                            </div>
-
-                            <div class="chat-content">
-                                <div class="chat-meta">John Smith <span class="pull-right">4 hours ago</span></div>
-                                Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
-                                <div class="clearfix"></div>
-                            </div>
-                        </li>
-
-                        <li class="by-other">
-                            <!-- Use the class "pull-right" in avatar -->
-                            <div class="avatar pull-right">
-                                <img alt="" src="img/user22.png">
-                            </div>
-
-                            <div class="chat-content">
-                                <!-- In the chat meta, first include "time" then "name" -->
-                                <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
-                                Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
-                                <div class="clearfix"></div>
-                            </div>
-                        </li>
-
                     </ul>
 
                 </div>
                 <!-- Widget footer -->
                 <div class="widget-foot">
 
-                    <form class="form-inline">
+                    <form name="createMessageForm" class="form-inline" ng-submit="createMessage()">
                         <div class="form-group">
-                            <input type="text" placeholder="Type your message here..." class="form-control">
+                            <input type="text" placeholder="Type your message here..." class="form-control" ng-required="true" ng-model="form_message.content">
                         </div>
-                        <button class="btn btn-info" type="submit">Send</button>
+                        <button ng-disabled="createMessageForm.$invalid" class="btn btn-info" type="submit">Send</button>
                     </form>
 
 

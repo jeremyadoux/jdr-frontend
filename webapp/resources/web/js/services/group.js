@@ -23,9 +23,27 @@ module.factory('GroupService', ['Group', '$q', '$stateParams', function(Group, $
             });
     }
 
+    function createMessage(groupId, content) {
+        return Group.messages.create( {id: groupId}, {content: content})
+            .$promise
+            .then(function(response) {
+                return response;
+            });
+    }
+
+    function findMessage(groupId) {
+        return Group.messages( {id: groupId, filter:{ order: 'created DESC', include : 'player' }})
+            .$promise
+            .then(function(response) {
+                return response;
+            });
+    }
+
     return {
         createGroup: createGroup,
         findAll: findAll,
-        findGroup: findGroup
+        findGroup: findGroup,
+        createMessage: createMessage,
+        findMessage: findMessage
     };
 }]);

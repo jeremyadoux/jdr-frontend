@@ -18,12 +18,22 @@ module.controller('GroupListController', ["$scope", "GroupService", "$state", fu
 }]);
 
 module.controller('GroupDetailController', ["$scope", "GroupService", "$state", "$stateParams", function($scope, GroupService, $state, $stateParams) {
-    console.log($scope.id);
-    console.log($stateParams.id);
     if($stateParams.id) {
         GroupService.findGroup($stateParams.id)
             .then(function(group){
                 $scope.group = group;
             });
+        GroupService.findMessage($stateParams.id)
+            .then(function(messages){
+                console.log(messages);
+                $scope.messages = messages;
+            });
     }
+
+    $scope.createMessage = function() {
+        GroupService.createMessage($scope.group.id, $scope.form_message.content)
+            .then(function(message) {
+                console.log(message);
+            });
+    };
 }]);
