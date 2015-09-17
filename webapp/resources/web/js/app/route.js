@@ -34,6 +34,12 @@ module.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
             templateUrl: 'group-detail.html',
             authenticate: true
         })
+        .state('profile', {
+            url: '/profile',
+            controller: 'ProfileController',
+            templateUrl: 'profile.html',
+            authenticate: true
+        })
         .state('register', {
             url: '/register',
             templateUrl: 'createAccount.html',
@@ -41,20 +47,16 @@ module.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
         });
     $urlRouterProvider.otherwise('home');
 }])
-    .run(['$rootScope', '$state', '$injector', 'LoopBackAuth', 'Player', function($rootScope, $state, $injector, LoopBackAuth, User) {
+    .run(['$rootScope', '$state', '$injector', 'LoopBackAuth', 'Player', function($rootScope, $state, $injector, LoopBackAuth, Player) {
         $rootScope.$on('$stateChangeStart', function(event, next) {
             //Force login user
             var $state = $injector.get('$state');
             if(!$rootScope.currentUser && LoopBackAuth.accessTokenId) {
-                User
-                    .getCurrent()
+                Player
+                    .getCurrent({filter: {include: 'avatar'}})
                     .$promise
                     .then(function(response) {
-                        $rootScope.currentUser = {
-                            id: response.id,
-                            tokenId: LoopBackAuth.accessTokenId,
-                            email: response.email
-                        };
+                        $rootScope.currentUser = response;
                     });
             } else if (next.authenticate && !$rootScope.currentUser) {
                 event.preventDefault(); //prevent current page from loading
