@@ -21,7 +21,7 @@ include "header.html"
     </div>
 
     <span ng-controller="ProfileNavController">
-        <div class="top-nav notification-row" ng-show="$root.currentUser">
+        <div class="top-nav notification-row" ng-show="currentUser">
             <!-- notificatoin dropdown start-->
             <ul class="nav pull-right top-menu">
 
@@ -225,9 +225,9 @@ include "header.html"
                 <li class="dropdown">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="profile-ava">
-                                    <img alt="" src="{{getAvatarUrlApi($root.currentUser)}}">
+                                    <customer-avatar ng-height="35" ng-width="35" profile="currentUser"></customer-avatar>
                                 </span>
-                        <span class="username" ng-bind="$root.currentUser.username"></span>
+                        <span class="username" ng-bind="currentUser.username"></span>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu extended logout">

@@ -12,20 +12,19 @@
         <div class="profile-widget profile-widget-info">
             <div class="panel-body">
                 <div class="col-lg-2 col-sm-2">
-                    <h4>Jenifer Smith</h4>
+                    <h4>{{profile.username}}</h4>
                     <div class="follow-ava">
-                        <img src="images/profile-widget-avatar.jpg" alt="">
+                        <customer-avatar ng-height="75" ng-width="75" profile="profile"></customer-avatar>
                     </div>
                     <h6>Administrator</h6>
                 </div>
                 <div class="col-lg-4 col-sm-4 follow-info">
-                    <p>Hello I’m Jenifer Smith, a leading expert in interactive and creative design.</p>
-                    <p>@jenifersmith</p>
-                    <p><i class="fa fa-twitter">jenifertweet</i></p>
+                    <p>{{profile.aboutme}}</p>
+                    <p>@</p>
+                    <p><i class="fa fa-twitter"></i></p>
                     <h6>
                         <span><i class="icon_clock_alt"></i>11:05 AM</span>
                         <span><i class="icon_calendar"></i>25.10.13</span>
-                        <span><i class="icon_pin_alt"></i>NY</span>
                     </h6>
                 </div>
                 <div class="col-lg-2 col-sm-6 follow-info weather-category">
@@ -238,11 +237,18 @@
                                     <div class="form-group">
                                         <label class="col-lg-2 control-label">Avatar</label>
                                         <div class="col-lg-6">
-                                            <img ng-if="profile.avatar.url" ng-src="{{ getAvatarUrlApi(profile) }}" />
+                                            <customer-avatar ng-height="100" ng-width="100" profile="profile"></customer-avatar>
                                             <div class="progress" style="" ng-show="uploader.isUploading">
                                                 <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
                                             </div>
                                             <input ng-hide="uploader.isUploading" type="file" nv-file-select="" uploader="uploader" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-lg-2 control-label">Nom d'utilisateur</label>
+                                        <div class="col-lg-6">
+                                            <input ng-model="profile.username" type="text" class="form-control" id="user-name" placeholder=" ">
                                         </div>
                                     </div>
 

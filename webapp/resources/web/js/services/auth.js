@@ -5,11 +5,8 @@ module.factory('AuthService', ['Player', '$q', '$rootScope', function(User, $q,
                 .login({email: email, password: password})
                 .$promise
                 .then(function(response) {
-                    $rootScope.currentUser = {
-                        id: response.user.id,
-                        tokenId: response.id,
-                        email: email
-                    };
+                    $rootScope.currentUser = response;
+                    $rootScope.$broadcast('profileHaveBeenUpdated', response);
                 });
         }
 
@@ -19,6 +16,7 @@ module.factory('AuthService', ['Player', '$q', '$rootScope', function(User, $q,
                 .$promise
                 .then(function() {
                     $rootScope.currentUser = null;
+                    $rootScope.$broadcast('profileHaveBeenUpdated', null);
                 });
         }
 

@@ -1,4 +1,4 @@
-module.controller('ProfileController', ["$scope", "$state", "FileUploader", 'LoopBackAuth', 'Player', 'appContext', function($scope, $state, FileUploader, LoopBackAuth, Player, appContext) {
+module.controller('ProfileController', ["$scope", "$state", "FileUploader", 'LoopBackAuth', 'UserService', 'appContext', function($scope, $state, FileUploader, LoopBackAuth, UserService, appContext) {
     $scope.appContext = appContext.API_URL;
 
     var uploader = $scope.uploader = new FileUploader({
@@ -22,33 +22,19 @@ module.controller('ProfileController', ["$scope", "$state", "FileUploader", 'Loo
     };
 
     //Load profile information
-    if(LoopBackAuth.accessTokenId) {
-        Player
-            .getCurrent({filter: {include: 'avatar'}})
-            .$promise
-            .then(function(response) {
-                $scope.profile = response;
-            });
-    } else {
-        event.preventDefault(); //prevent current page from loading
-        $state.go('login');
-    }
+    UserService.getCurrent().then(function(response) {
+        $scope.profile = response;
+    });
 
     $scope.profileInformationSave = function() {
-        Player.prototype$updateAttributes( {id: $scope.profile.id}, $scope.profile )
-            .$promise
-            .then(function(response) {
-                console.log(response);
-            });
-    };
+        UserService.profileSave($scope.profile).then(function(response) {
 
-    $scope.getAvatarUrlApi = function(profile) {
-        return appContext.API_URL + profile.avatar.url;
-    }
+        });
+    };
 }]);
 
-module.controller('ProfileNavController', ["$rootScope", "$scope", "$state", "$timeout", "appContext", function($rootScope, $scope, $state, $timeout, appContext) {
-    $scope.getAvatarUrlApi = function(profile) {
-        return appContext.API_URL + profile.avatar.url;
-    }
+module.controller('ProfileNavController', ["$scope", function($scope) {
+    $scope.$on('profileHaveBeenUpdated', function(event, profile) {
+        $scope.currentUser = profile;
+    });
 }]);
