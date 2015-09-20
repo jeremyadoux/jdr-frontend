@@ -1,10 +1,10 @@
-module.controller('GroupListController', ["$scope", "GroupService", "$state", function($scope, GroupService, $state) {
+module.controller('GroupListController', ["$scope", "GroupService", "$state", "socket", function($scope, GroupService, $state, socket) {
     $scope.groups = [];
 
     $scope.createGroup =  function() {
         GroupService.createGroup($scope.group.title, $scope.group.description)
             .then(function(group) {
-                $state.go('group-detail', { "id": group.id});
+                //$state.go('group-detail', { "id": group.id});
             });
     };
 

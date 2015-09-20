@@ -19,6 +19,8 @@
     "angular-ui-calendar": "master",
     "jquery.easing": "latest",
     "classie": "latest",
-    "jquery-fittext.js" : "latest"
+    "jquery-fittext.js" : "latest",
+    "angular-live-set" : "latest",
+    "socket.io": "latest"
   }
 }
