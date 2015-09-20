@@ -25,7 +25,6 @@ module.controller('GroupDetailController', ["$scope", "GroupService", "$state", 
             });
         GroupService.findMessage($stateParams.id)
             .then(function(messages){
-                console.log(messages);
                 $scope.messages = messages;
             });
     }

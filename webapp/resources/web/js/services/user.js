@@ -5,8 +5,13 @@ module.factory('UserService', ['Player', '$q', '$stateParams', '$rootScope', '$s
                 .getCurrent({filter: {include: 'avatar'}})
                 .$promise
                 .then(function(response) {
-                    console.log(response);
                     return response;
+                },
+                function(errorResponse) {
+                    event.preventDefault(); //prevent current page from loading
+                    $state.go('login');
+
+                    return "";
                 });
         } else {
             event.preventDefault(); //prevent current page from loading

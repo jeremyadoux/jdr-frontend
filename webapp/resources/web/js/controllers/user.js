@@ -5,7 +5,7 @@
 module.controller('UserController', ['$scope', '$state', 'AuthService', function($scope, $state, AuthService) {
     $scope.login = function() {
         AuthService.login($scope.user.email, $scope.user.password)
-            .then(function() {
+            .then(function(response) {
                 $state.go('home');
             });
     };

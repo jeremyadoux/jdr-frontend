@@ -32,7 +32,7 @@ module.factory('GroupService', ['Group', '$q', '$stateParams', function(Group, $
     }
 
     function findMessage(groupId) {
-        return Group.messages( {id: groupId, filter:{ order: 'created DESC', include : 'player' }})
+        return Group.messages( {id: groupId, filter:{ order: 'created DESC', include : {player : 'avatar'} }})
             .$promise
             .then(function(response) {
                 return response;

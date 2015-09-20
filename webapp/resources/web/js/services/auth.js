@@ -1,17 +1,20 @@
-module.factory('AuthService', ['Player', '$q', '$rootScope', function(User, $q,
+module.factory('AuthService', ['Player', '$q', '$rootScope', function(Player, $q,
                                                                       $rootScope) {
         function login(email, password) {
-            return User
+            return Player
                 .login({email: email, password: password})
                 .$promise
                 .then(function(response) {
-                    $rootScope.currentUser = response;
-                    $rootScope.$broadcast('profileHaveBeenUpdated', response);
+                    console.log(response.user);
+                    $rootScope.currentUser = response.user;
+                    $rootScope.$broadcast('profileHaveBeenUpdated', response.user);
+
+                    return response;
                 });
         }
 
         function logout() {
-            return User
+            return Player
                 .logout()
                 .$promise
                 .then(function() {
@@ -21,7 +24,7 @@ module.factory('AuthService', ['Player', '$q', '$rootScope', function(User, $q,
         }
 
         function register(email, password) {
-            return User
+            return Player
                 .create({
                     email: email,
                     password: password

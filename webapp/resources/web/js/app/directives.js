@@ -55,8 +55,6 @@ module.directive('customerAvatar', ['appContext', function(appContext) {
             profile: '=profile'
         },
         template: function(elem, attr){
-            console.log(attr);
-            console.log(appContext);
             return '<img alt="avatar" src="'+appContext.API_URL+'{{profile.avatar.url}}?width='+attr.ngWidth+'&height='+attr.ngHeight+'">';
         }
     };

@@ -2690,7 +2690,7 @@ module.factory(
          */
         "login": {
           params: {
-            include: "user"
+            include: {user: 'avatar'}
           },
           interceptor: {
             response: function(response) {
