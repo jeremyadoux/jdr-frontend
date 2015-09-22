@@ -21,6 +21,6 @@
     "classie": "latest",
     "jquery-fittext.js" : "latest",
     "angular-live-set" : "latest",
-    "socket.io": "latest"
+    "socket.io-client": "latest"
   }
 }

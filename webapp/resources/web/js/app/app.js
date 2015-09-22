@@ -15,25 +15,3 @@ var getUrlParameter = function(sParam)
         }
     }
 }
-
-//Here LoopBackAuth service must be provided as argument for authenticating the user
-module.factory('socket', function(LoopBackAuth, appContext){
-    console.log('test');
-    //Creating connection with server
-    console.log(appContext.API_URL);
-    var socket = io.connect(appContext.API_URL);
-
-    //This part is only for login users for authenticated socket connection between client and server.
-    //If you are not using login page in you website then you should remove rest piece of code..
-    var id = LoopBackAuth.accessTokenId;
-    var userId = LoopBackAuth.currentUserId;
-    socket.on('connect', function(){
-        socket.emit('authentication', {id: id, userId: userId });
-        socket.on('authenticated', function() {
-            // use the socket as usual
-            console.log('User is authenticated');
-        });
-    });
-    return socket;
-
-});

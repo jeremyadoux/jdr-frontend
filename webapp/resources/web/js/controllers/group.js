@@ -1,4 +1,4 @@
-module.controller('GroupListController', ["$scope", "GroupService", "$state", "socket", function($scope, GroupService, $state, socket) {
+module.controller('GroupListController', ["$scope", "GroupService", "$state", "PubSub", function($scope, GroupService, $state, PubSub) {
     $scope.groups = [];
 
     $scope.createGroup =  function() {
@@ -11,6 +11,14 @@ module.controller('GroupListController', ["$scope", "GroupService", "$state", "s
     $scope.listGroup = function() {
         GroupService.findAll().then(function(groups) {
             $scope.groups = groups;
+
+            PubSub.subscribe({
+                collectionName: 'Group',
+                method : 'POST'
+            }, function(data) {
+                $scope.groups.push(data);
+                $scope.$apply();
+            });
         });
     };
 
