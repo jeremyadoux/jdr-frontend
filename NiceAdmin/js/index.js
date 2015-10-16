@@ -95,7 +95,7 @@ $(function () {
         ykeys: ['licensed', 'sorned'],
         labels: ['Licensed', 'Off the road']
       });
-    }
+    };
     // Init First Chart
     chart1();
     // Resize First Chart on page resize
@@ -116,7 +116,7 @@ $(function () {
         colors: ["#C5CED6", "#59646E","#384B5E", "#999"]
         //colors: ["#4BB5C1", "#96CA2D", "#7FC6BC","#EDF7F2"]
       });
-    }
+    };
     // Init Second Chart
     graph2();
     // Resize Second Chart on page resize
@@ -143,7 +143,7 @@ $(function () {
         barColors: [ "#56626B","#486b60", "#999"]
       });
     
-    }
+    };
     // Init Third Chart
     chart1();
     // Resize Third Chart on page resize

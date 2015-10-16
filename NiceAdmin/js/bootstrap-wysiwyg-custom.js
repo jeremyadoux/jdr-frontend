@@ -24,7 +24,7 @@
           } else {
             $('#voiceBtn').hide();
           }*/
-        };
+        }
         function showErrorAlert (reason, detail) {
             var msg='';
             if (reason==='unsupported-file-type') { msg = "Unsupported format " +detail; }
@@ -33,7 +33,7 @@
             }
             $('<div class="alert"> <button type="button" class="close" data-dismiss="alert">&times;</button>'+ 
              '<strong>File upload error</strong> '+msg+' </div>').prependTo('#alerts');
-        };
+        }
         initToolbarBootstrapBindings();  
         $('#editor').wysiwyg({ fileUploadError: showErrorAlert} );
         window.prettyPrint && prettyPrint();
