@@ -22,6 +22,7 @@
     "classie": "latest",
     "jquery-fittext.js" : "latest",
     "angular-live-set" : "latest",
-    "socket.io-client": "latest"
+    "socket.io-client": "latest",
+    "angular-native-picker": "latest"
   }
 }

@@ -3,18 +3,22 @@
         <div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="eventSources"></div>
 
         <div class="container">
-            <form name="addEventForm" id="addEventForm" ng-submit="" novalidate method="POST" class="form col-md-12 center-block">
+            <form name="addEventForm" id="addEventForm" ng-submit="createEvent()" novalidate method="POST" class="form col-md-12 center-block">
 
                 <div class="form-group col-lg-3">
-                    <input type="text" ng-required="true" class="form-control input-sm" ng-model="title" id="title" placeholder="{{titlePlaceholder}}">
+                    <input type="text" ng-required="true" class="form-control input-sm" ng-model="event.title" id="title" placeholder="{{titlePlaceholder}}">
                 </div>
 
                 <div class="form-group col-lg-3">
-                    <input type="datetime" ng-required="true" class="form-control input-sm" ng-model="start" id="start" placeholder="{{startPlaceholder}}">
+                    <input type="textarea" ng-required="true" class="form-control input-sm" ng-model="event.description" id="description" placeholder="{{descriptionPlaceholder}}">
                 </div>
 
                 <div class="form-group col-lg-3">
-                    <input type="datetime" ng-required="true" class="form-control input-sm" ng-model="end" id="end" placeholder="{{endPlaceholder}}">
+                    <input type="text" ng-required="true" class="form-control input-sm" pick-a-date="event.dateStarted" id="start" placeholder="{{startPlaceholder}}">
+                </div>
+
+                <div class="form-group col-lg-3">
+                    <input type="datetime" ng-required="true" class="form-control input-sm" pick-a-date="event.dateEnded" id="end" placeholder="{{endPlaceholder}}">
                 </div>
 
                 <div class="form-group col-lg-1">
