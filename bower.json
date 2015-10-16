@@ -10,6 +10,7 @@
     "jquery": "latest",
     "angular": "latest",
     "moment": "latest",
+    "angular-moment" : "latest",
     "ngDialog" : "latest",
     "angular-cookies": "latest",
     "angular-resource" : "latest",

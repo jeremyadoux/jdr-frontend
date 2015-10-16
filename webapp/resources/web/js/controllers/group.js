@@ -16,7 +16,7 @@ module.controller('GroupListController', ["$scope", "GroupService", "$state", "P
                 collectionName: 'Group',
                 method : 'POST'
             }, function(data) {
-                $scope.groups.push(data);
+                $scope.groups.unshift(data);
                 $scope.$apply();
             });
         });
@@ -25,7 +25,7 @@ module.controller('GroupListController', ["$scope", "GroupService", "$state", "P
     $scope.listGroup();
 }]);
 
-module.controller('GroupDetailController', ["$scope", "GroupService", "$state", "$stateParams", function($scope, GroupService, $state, $stateParams) {
+module.controller('GroupDetailController', ["$scope", "$rootScope", "GroupService", "$state", "$stateParams", "PubSub", function($scope, $rootScope, GroupService, $state, $stateParams, PubSub) {
     if($stateParams.id) {
         GroupService.findGroup($stateParams.id)
             .then(function(group){
@@ -34,13 +34,36 @@ module.controller('GroupDetailController', ["$scope", "GroupService", "$state", 
         GroupService.findMessage($stateParams.id)
             .then(function(messages){
                 $scope.messages = messages;
+
+                PubSub.subscribe({
+                    collectionName: 'Message',
+                    method : 'POST'
+                }, function(data) {
+                    if(data.groupId == $scope.group.id) {
+                        $scope.messages.unshift(data);
+                        $scope.$apply();
+                    }
+                });
             });
     }
 
     $scope.createMessage = function() {
         GroupService.createMessage($scope.group.id, $scope.form_message.content)
             .then(function(message) {
-                console.log(message);
+
             });
     };
+
+    $scope.loadClassMessageTypeSender = function(message, typeme, typeother) {
+        typeme = typeof typeme !== 'undefined' ? typeme : "by-me";
+        typeother = typeof typeother !== 'undefined' ? typeother : "by-other";
+
+
+      if($rootScope.currentUser.id == message.publisherId) {
+        return typeme;
+      } else {
+          return typeother;
+      }
+    };
+
 }]);

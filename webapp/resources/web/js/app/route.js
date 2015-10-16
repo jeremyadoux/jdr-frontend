@@ -56,7 +56,6 @@ module.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
                     .getCurrent({filter: {include: 'avatar'}})
                     .$promise
                     .then(function(response) {
-                        console.log(response);
                         $rootScope.currentUser = response;
                         $rootScope.$broadcast('profileHaveBeenUpdated', response);
                     },

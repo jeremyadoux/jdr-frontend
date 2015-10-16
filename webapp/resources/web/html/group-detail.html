@@ -22,19 +22,24 @@
             <div class="panel-body">
                 <!-- Widget content -->
                 <div class="padd sscroll">
-
+                    <form name="createMessageForm" class="form-inline" ng-submit="createMessage()">
+                        <div class="form-group">
+                            <input type="text" placeholder="Type your message here..." class="form-control" ng-required="true" ng-model="form_message.content">
+                        </div>
+                        <button ng-disabled="createMessageForm.$invalid" class="btn btn-info" type="submit">Send</button>
+                    </form>
                     <ul class="chats">
 
                         <!-- Chat by us. Use the class "by-me". Chat by other. Use the class "by-other". -->
-                        <li class="by-me" ng-repeat="message in messages">
+                        <li ng-repeat="message in messages" ng-class="loadClassMessageTypeSender(message)">
                             <!-- Use the class "pull-left" in avatar -->
-                            <div class="avatar pull-left">
+                            <div class="avatar" ng-class="loadClassMessageTypeSender(message, 'pull-left', 'pull-right')">
                                 <customer-avatar ng-height="35" ng-width="35" profile="message.player"></customer-avatar>
                             </div>
 
                             <div class="chat-content">
                                 <!-- In meta area, first include "name" and then "time" -->
-                                <div class="chat-meta"><span ng-bind="message.player.username"></span> <span class="pull-right">3 hours ago</span></div>
+                                <div class="chat-meta"><span ng-bind="message.player.username" ng-class="loadClassMessageTypeSender(message, '', 'pull-right')"></span> <span ng-class="loadClassMessageTypeSender(message, 'pull-right', '')" am-time-ago="message.created"></span></div>
                                 <span ng-bind="message.content"></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -42,21 +47,7 @@
                     </ul>
 
                 </div>
-                <!-- Widget footer -->
-                <div class="widget-foot">
-
-                    <form name="createMessageForm" class="form-inline" ng-submit="createMessage()">
-                        <div class="form-group">
-                            <input type="text" placeholder="Type your message here..." class="form-control" ng-required="true" ng-model="form_message.content">
-                        </div>
-                        <button ng-disabled="createMessageForm.$invalid" class="btn btn-info" type="submit">Send</button>
-                    </form>
-
-
-                </div>
             </div>
-
-
         </div>
     </div>
 </div>

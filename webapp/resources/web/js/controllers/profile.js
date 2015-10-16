@@ -35,7 +35,6 @@ module.controller('ProfileController', ["$scope", "$state", "FileUploader", 'Loo
 
 module.controller('ProfileNavController', ["$scope", function($scope) {
     $scope.$on('profileHaveBeenUpdated', function(event, profile) {
-        console.log(profile);
         $scope.currentUser = profile;
     });
 }]);
