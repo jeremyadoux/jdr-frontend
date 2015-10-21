@@ -298,6 +298,12 @@ include "header.html"
                 </a>
             </li>
             <li ng-show="currentUser">
+                <a ui-sref="chronique-list" ui-sref-active="active">
+                    <i class="icon_house_alt"></i>
+                    <span>Chroniques</span>
+                </a>
+            </li>
+            <li ng-show="currentUser">
                 <a ui-sref="logout" ui-sref-active="active">
                     <i class="icon_house_alt"></i>
                     <span>Se déconnecter</span>

@@ -1,0 +1,61 @@
+include "profile-header.html"
+<!-- edit-profile -->
+<div id="edit-profile" class="tab-pane active">
+    <section class="panel">
+        <div class="panel-body bio-graph-info">
+            <h1> Profile Info</h1>
+            <form name="editProfileForm" ng-submit="profileInformationSave()" class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Avatar</label>
+                    <div class="col-lg-6">
+                        <customer-avatar ng-height="100" ng-width="100" profile="profile"></customer-avatar>
+                        <div class="progress" style="" ng-show="uploader.isUploading">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                        </div>
+                        <input ng-hide="uploader.isUploading" type="file" nv-file-select="" uploader="uploader" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Nom d'utilisateur</label>
+                    <div class="col-lg-6">
+                        <input ng-model="profile.username" type="text" class="form-control" id="user-name" placeholder=" ">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">First Name</label>
+                    <div class="col-lg-6">
+                        <input ng-model="profile.firstname" type="text" class="form-control" id="f-name" placeholder=" ">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Last Name</label>
+                    <div class="col-lg-6">
+                        <input ng-model="profile.lastname" type="text" class="form-control" id="l-name" placeholder=" ">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">About Me</label>
+                    <div class="col-lg-10">
+                        <textarea ng-model="profile.aboutme" name="" id="" class="form-control" cols="30" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Email</label>
+                    <div class="col-lg-6">
+                        <input ng-model="profile.email" type="text" class="form-control" id="email" placeholder=" ">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button ng-disabled="editProfileForm.$invalid" type="submit" class="btn btn-primary">Save</button>
+                        <button type="button" class="btn btn-danger">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+include "profile-footer.html"

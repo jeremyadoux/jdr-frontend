@@ -31,10 +31,42 @@ module.controller('ProfileController', ["$scope", "$state", "FileUploader", 'Loo
 
         });
     };
+
+    $scope.changeActiveTabs = function(tab) {
+        $state.go(tab);
+    };
+
+    $scope.isActiveTabs = function(tab) {
+        return tab == $state.$current.name;
+    };
 }]);
 
 module.controller('ProfileNavController', ["$scope", function($scope) {
     $scope.$on('profileHaveBeenUpdated', function(event, profile) {
         $scope.currentUser = profile;
     });
+}]);
+
+module.controller('ProfileCharacterController', ["$scope", "$state", "UserService", "CharacterService", function($scope, $state, UserService, CharacterService) {
+    $scope.changeActiveTabs = function(tab) {
+        $state.go(tab);
+    };
+
+    $scope.isActiveTabs = function(tab) {
+        return tab == $state.$current.name;
+    };
+
+    UserService.getCurrent().then(function(response) {
+        $scope.profile = response;
+    });
+
+    CharacterService.findAllByUser().then(function(charactersResponse) {
+        $scope.characterList = charactersResponse;
+    });
+
+    $scope.createCharacter = function() {
+        CharacterService.createCharacter($scope.character.name)
+            .then(function(character) {
+            });
+    };
 }]);

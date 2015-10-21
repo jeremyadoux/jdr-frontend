@@ -34,10 +34,22 @@ module.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
             templateUrl: 'group-detail.html',
             authenticate: true
         })
+        .state('chronique-list', {
+            url: '/chronique/list',
+            controller: 'ChroniqueController',
+            templateUrl: 'chronique-list.html',
+            authenticate: true
+        })
         .state('profile', {
-            url: '/profile',
+            url: '/profile/edit',
             controller: 'ProfileController',
-            templateUrl: 'profile.html',
+            templateUrl: 'profile-edit.html',
+            authenticate: true
+        })
+        .state('profileEditCharacter', {
+            url: '/profile/edit/character',
+            controller: 'ProfileCharacterController',
+            templateUrl: 'profile-edit-character.html',
             authenticate: true
         })
         .state('register', {

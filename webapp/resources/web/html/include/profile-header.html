@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-home"></i> Groupes</h3>
+        <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i>Accueil</li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <!-- profile-widget -->
+    <div class="col-lg-12">
+        <div class="profile-widget profile-widget-info">
+            <div class="panel-body">
+                <div class="col-lg-2 col-sm-2">
+                    <h4>{{profile.username}}</h4>
+                    <div class="follow-ava">
+                        <customer-avatar ng-height="75" ng-width="75" profile="profile"></customer-avatar>
+                    </div>
+                    <h6>Administrator</h6>
+                </div>
+                <div class="col-lg-4 col-sm-4 follow-info">
+                    <p>{{profile.aboutme}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- page start-->
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading tab-bg-info">
+                <ul class="nav nav-tabs">
+                    <li ng-class="{'active' : isActiveTabs('profile') }">
+                        <a ng-click="changeActiveTabs('profile')">
+                            <i class="icon-envelope"></i>
+                            Edit Profile
+                        </a>
+                    </li>
+                    <li ng-class="{'active' : isActiveTabs('profileEditCharacter') }">
+                        <a ng-click="changeActiveTabs('profileEditCharacter')">
+                            <i class="icon-envelope"></i>
+                            Character
+                        </a>
+                    </li>
+                </ul>
+            </header>
+            <div class="panel-body">
+                <div class="tab-content">
