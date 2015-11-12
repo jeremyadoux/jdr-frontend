@@ -317,8 +317,9 @@ include "header.html"
 
 <!--main content start-->
 <section id="main-content">
-    <section class="wrapper" ui-view>
-
+    <section class="wrapper">
+        <span ng-controller="MessageController"><div class="row" ng-show="message"><div class="col-lg-12 alert" ng-class="type" role="alert">{{message}}</div></div></span>
+        <span ui-view></span>
     </section>
 </section>
 

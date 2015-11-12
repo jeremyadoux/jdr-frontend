@@ -21,6 +21,7 @@
     "grunt-contrib-cssmin": "latest",
     "grunt-contrib-copy": "latest",
     "grunt-includes": "latest",
-    "grunt-newer": "latest"
+    "grunt-newer": "latest",
+    "grunt-text-replace": "latest"
   }
 }

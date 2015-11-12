@@ -2,10 +2,11 @@
  * Created by jadoux on 01/07/2015.
  */
 
-module.controller('UserController', ['$scope', '$state', 'AuthService', function($scope, $state, AuthService) {
+module.controller('UserController', ['$rootScope', '$scope', '$state', 'AuthService', function($rootScope, $scope, $state, AuthService) {
     $scope.login = function() {
         AuthService.login($scope.user.email, $scope.user.password)
             .then(function(response) {
+                $rootScope.$broadcast('sendMessageInformation', 'Vous vous êtes connectés avec succès.', 'alert-success');
                 $state.go('home');
             });
     };

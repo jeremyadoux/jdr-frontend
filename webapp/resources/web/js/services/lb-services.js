@@ -1,7 +1,9 @@
 (function(window, angular, undefined) {'use strict';
 
+  var urlBase = "@@urlApiBackend/api";
   //var urlBase = "http://127.0.0.1:3000/api";
-  var urlBase = "http://192.168.50.6:443/api";
+ // var urlBase = "http://51.254.33.117:443/api";
+  //var urlBase = "http://192.168.50.6:443/api";
 //var urlBase = "http://51.254.33.117:443/api";
 var authHeader = 'authorization';
 

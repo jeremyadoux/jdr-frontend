@@ -1,6 +1,10 @@
 module.exports = function (grunt) {
     'use strict';
 
+    var target = grunt.option('target') || 'dev';
+
+    console.log(target);
+
     // Force use of Unix newlines
     grunt.util.linefeed = '\n';
 
@@ -10,31 +14,62 @@ module.exports = function (grunt) {
         bowerrc: grunt.file.readJSON('.bowerrc'),
 
         // Path configuration from Gruntfile.js
-        dirs: {
+        dev: {
+            'urlApiBackend': 'http://192.168.50.6:443',
+            'pathToAllFileStatic': '/jdr-frontend/webapp/static/',
             'vendor': '<%= bowerrc.directory %>',
             'bootstrap': {
-                'js': '<%= dirs.vendor %>/bootstrap/js',
-                'fonts': '<%= dirs.vendor %>/bootstrap/fonts',
-                'less': '<%= dirs.vendor %>/bootstrap/less'
+                'js': '<%= '+target+'.vendor %>/bootstrap/js',
+                'fonts': '<%= '+target+'.vendor %>/bootstrap/fonts',
+                'less': '<%= '+target+'.vendor %>/bootstrap/less'
             },
             'webapp': 'webapp/',
             'web': {
-                'root': '<%= dirs.webapp %>resources/web',
-                'css': '<%= dirs.webapp %>resources/web/css',
-                'less': '<%= dirs.webapp %>resources/web/less',
-                'js': '<%= dirs.webapp %>resources/web/js',
-                'fonts': '<%= dirs.webapp %>resources/web/fonts',
-                'images': '<%= dirs.webapp %>resources/web/images',
-                'html': '<%= dirs.webapp %>resources/web/html',
-                'views': '<%= dirs.webapp %>resources/views'
+                'root': '<%= '+target+'.webapp %>resources/web',
+                'css': '<%= '+target+'.webapp %>resources/web/css',
+                'less': '<%= '+target+'.webapp %>resources/web/less',
+                'js': '<%= '+target+'.webapp %>resources/web/js',
+                'fonts': '<%= '+target+'.webapp %>resources/web/fonts',
+                'images': '<%= '+target+'.webapp %>resources/web/images',
+                'html': '<%= '+target+'.webapp %>resources/web/html',
+                'views': '<%= '+target+'.webapp %>resources/views'
             },
             'static': {
-                'root': '<%= dirs.webapp %>static',
-                'css': '<%= dirs.webapp %>static/css',
-                'images': '<%= dirs.webapp %>static/images',
-                'fonts': '<%= dirs.webapp %>static/fonts',
-                'html': '<%= dirs.webapp %>static/html',
-                'js': '<%= dirs.webapp %>static/js'
+                'root': '<%= '+target+'.webapp %>static',
+                'css': '<%= '+target+'.webapp %>static/css',
+                'images': '<%= '+target+'.webapp %>static/images',
+                'fonts': '<%= '+target+'.webapp %>static/fonts',
+                'html': '<%= '+target+'.webapp %>static/html',
+                'js': '<%= '+target+'.webapp %>static/js'
+            }
+        },
+        production: {
+            'urlApiBackend': 'http://192.168.50.6:443',
+            'pathToAllFileStatic': '/jdr-frontend/webapp/static/',
+            'vendor': '<%= bowerrc.directory %>',
+            'bootstrap': {
+                'js': '<%= '+target+'.vendor %>/bootstrap/js',
+                'fonts': '<%= '+target+'.vendor %>/bootstrap/fonts',
+                'less': '<%= '+target+'.vendor %>/bootstrap/less'
+            },
+            'webapp': 'webapp/',
+            'web': {
+                'root': '<%= '+target+'.webapp %>resources/web',
+                'css': '<%= '+target+'.webapp %>resources/web/css',
+                'less': '<%= '+target+'.webapp %>resources/web/less',
+                'js': '<%= '+target+'.webapp %>resources/web/js',
+                'fonts': '<%= '+target+'.webapp %>resources/web/fonts',
+                'images': '<%= '+target+'.webapp %>resources/web/images',
+                'html': '<%= '+target+'.webapp %>resources/web/html',
+                'views': '<%= '+target+'.webapp %>resources/views'
+            },
+            'static': {
+                'root': '<%= '+target+'.webapp %>static',
+                'css': '<%= '+target+'.webapp %>static/css',
+                'images': '<%= '+target+'.webapp %>static/images',
+                'fonts': '<%= '+target+'.webapp %>static/fonts',
+                'html': '<%= '+target+'.webapp %>static/html',
+                'js': '<%= '+target+'.webapp %>static/js'
             }
         },
 
@@ -42,22 +77,22 @@ module.exports = function (grunt) {
             output: {
                 'project': {
                     css: {
-                        'core': '<%= dirs.web.css %>/projectCore.css'
+                        'core': '<%= '+target+'.web.css %>/projectCore.css'
                     },
-                    js: '<%= dirs.static.js %>/projectCore.js'
+                    js: '<%= '+target+'.static.js %>/projectCore.js'
                 }
             },
 
             input: {
-                less: '<%= dirs.web.less %>/projectCore.less',
+                less: '<%= '+target+'.web.less %>/projectCore.less',
                 js: [
-                    '<%= dirs.bootstrap.js %>/dropdown.js',
-                    '<%= dirs.bootstrap.js %>/tooltip.js',
-                    '<%= dirs.bootstrap.js %>/collapse.js',
-                    '<%= dirs.bootstrap.js %>/popover.js',
-                    '<%= dirs.bootstrap.js %>/transition.js',
-                    '<%= dirs.bootstrap.js %>/carousel.js',
-                    '<%= dirs.bootstrap.js %>/button.js'
+                    '<%= '+target+'.bootstrap.js %>/dropdown.js',
+                    '<%= '+target+'.bootstrap.js %>/tooltip.js',
+                    '<%= '+target+'.bootstrap.js %>/collapse.js',
+                    '<%= '+target+'.bootstrap.js %>/popover.js',
+                    '<%= '+target+'.bootstrap.js %>/transition.js',
+                    '<%= '+target+'.bootstrap.js %>/carousel.js',
+                    '<%= '+target+'.bootstrap.js %>/button.js'
                 ]
             }
         },
@@ -75,7 +110,7 @@ module.exports = function (grunt) {
         bower: {
             install: {
                 options: {
-                    targetDir: '<%= dirs.vendor %>',
+                    targetDir: '<%= '+target+'.vendor %>',
                     cleanTargetDir: true,
                     layout: 'byComponent',
                     install: true,
@@ -121,9 +156,9 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= dirs.web.css %>',
+                    cwd: '<%= '+target+'.web.css %>',
                     src: ['*.css', '!*.min.css'],
-                    dest: '<%= dirs.static.css %>',
+                    dest: '<%= '+target+'.static.css %>',
                     ext: '.min.css'
                 }]
             }
@@ -145,12 +180,12 @@ module.exports = function (grunt) {
 
         includes : {
             build: {
-                cwd: '<%= dirs.web.html %>/',
+                cwd: '<%= '+target+'.web.html %>/',
                 src: ['**/*.html'],
-                dest: '<%= dirs.static.html %>',
+                dest: '<%= '+target+'.static.html %>',
                 options: {
                     flatten: true,
-                    includePath: '<%= dirs.web.html %>/include',
+                    includePath: '<%= '+target+'.web.html %>/include',
                     banner: '<!-- Site built using grunt includes! -->\n'
                 }
             }
@@ -160,26 +195,26 @@ module.exports = function (grunt) {
             scripts: {
                 files: [{
                     expand: true,
-                    cwd: '<%= dirs.web.js %>/',
+                    cwd: '<%= '+target+'.web.js %>/',
                     src: ['**/*.js'],
-                    dest: '<%= dirs.static.js %>'
+                    dest: '<%= '+target+'.static.js %>'
                 }]
             },
             css: {
                 files: [{
                     expand: true,
-                    cwd: '<%= dirs.web.css %>/',
+                    cwd: '<%= '+target+'.web.css %>/',
                     src: ['**/*.css'],
-                    dest: '<%= dirs.static.css %>'
+                    dest: '<%= '+target+'.static.css %>'
                 }]
             },
             images: {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= dirs.web.images %>',
+                        cwd: '<%= '+target+'.web.images %>',
                         src: ['**'],
-                        dest: '<%= dirs.static.images %>'
+                        dest: '<%= '+target+'.static.images %>'
                     }
                 ]
             },
@@ -187,15 +222,15 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
-                        cwd: '<%= dirs.web.fonts %>',
+                        cwd: '<%= '+target+'.web.fonts %>',
                         src: ['**'],
-                        dest: '<%= dirs.static.fonts %>'
+                        dest: '<%= '+target+'.static.fonts %>'
                     },
                     {
                         expand: true,
-                        cwd: '<%= dirs.bootstrap.fonts %>',
+                        cwd: '<%= '+target+'.bootstrap.fonts %>',
                         src: ['**'],
-                        dest: '<%= dirs.static.fonts %>'
+                        dest: '<%= '+target+'.static.fonts %>'
                     }
                 ]
             }
@@ -203,21 +238,21 @@ module.exports = function (grunt) {
         watch: {
             // When a .js or an html file is modified, copy to static dir
             scripts: {
-                files: ['<%= dirs.web.js %>/**'],
-                tasks: ['newer:copy:scripts'],
+                files: ['<%= '+target+'.web.js %>/**'],
+                tasks: ['newer:copy:scripts', 'replace:allJs'],
                 options: {
                     livereload: true
                 }
             },
             html: {
-                files: ['<%= dirs.web.html %>/**'],
-                tasks: ['includes:build'],
+                files: ['<%= '+target+'.web.html %>/**'],
+                tasks: ['includes:build', 'replace:allHtml'],
                 options: {
                     livereload: true
                 }
             },
             ftl: {
-                files: ['<%= dirs.web.views %>/**'],
+                files: ['<%= '+target+'.web.views %>/**'],
                 tasks: [],
                 options: {
                     livereload: true
@@ -225,7 +260,7 @@ module.exports = function (grunt) {
             },
             // When a .less file is modified, compile to css, then minify the project then copy css to static dir
             less: {
-                files: ['<%= dirs.web.less %>/**', '<%= dirs.web.css %>/**'],
+                files: ['<%= '+target+'.web.less %>/**', '<%= '+target+'.web.css %>/**'],
                 tasks: ['less:project', 'cssmin:project', 'newer:copy:css'
                 ],
                 options: {
@@ -234,12 +269,46 @@ module.exports = function (grunt) {
             },
             // When an image or a font is modified, copy to static dir
             fontsImages: {
-                files: ['<%= dirs.web.images %>/**', '<%= dirs.web.fonts %>/**'
+                files: ['<%= '+target+'.web.images %>/**', '<%= '+target+'.web.fonts %>/**'
                 ],
                 tasks: ['newer:copy:images', 'newer:copy:fonts'],
                 options: {
                     livereload: true
                 }
+            }
+        },
+        replace: {
+            html: {
+                src: ['<%= '+target+'.static.html %>/*.html'],
+                overwrite: true,                 // overwrite matched source files
+                replacements: [{
+                    from: '@@pathCSS',
+                    to: '<%= '+target+'.pathToAllFileStatic %>css'
+                }]
+            },
+            js: {
+                src: ['<%= '+target+'.static.html %>/*.html'],
+                overwrite: true,                 // overwrite matched source files
+                replacements: [{
+                    from: '@@pathJS',
+                    to: '<%= '+target+'.pathToAllFileStatic %>js'
+                }]
+            },
+            vendor: {
+                src: ['<%= '+target+'.static.html %>/*.html'],
+                overwrite: true,                 // overwrite matched source files
+                replacements: [{
+                    from: '@@pathVendor',
+                    to: '<%= '+target+'.pathToAllFileStatic %>vendor'
+                }]
+            },
+            urlApi: {
+                src: ['<%= '+target+'.static.js %>/**/*.js'],
+                overwrite: true,                 // overwrite matched source files
+                replacements: [{
+                    from: '@@urlApiBackend',
+                    to: '<%= '+target+'.urlApiBackend %>'
+                }]
             }
         }
 
@@ -255,11 +324,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-includes');
+    grunt.loadNpmTasks('grunt-text-replace');
     // Register tasks
     
     grunt.registerTask('copy:project', ['includes:build', 'copy:scripts', 'copy:css', 'copy:fonts', 'copy:images' ]);
-
-    grunt.registerTask('project', ['less:project', 'cssmin:project', 'uglify:project', 'copy:project' ]);
+    grunt.registerTask('replace:allHtml', ['replace:html', 'replace:js',  'replace:vendor']);
+    grunt.registerTask('replace:allJs', ['replace:urlApi']);
+    grunt.registerTask('project', ['less:project', 'cssmin:project', 'uglify:project', 'copy:project', 'replace:allHtml', 'replace:allJs' ]);
     // Called when grunt runner is called without args
     // Install Bower dependencies then project task previously defined
     grunt.registerTask('default', ['bower', 'project']);

@@ -8,9 +8,10 @@ module.factory('ChroniqueService', ['Chronique', '$q', '$stateParams', function(
     }
 
     function findAll() {
-        return Chronique.find({filter:{ order: 'created DESC' }})
+        return Chronique.find({filter:{ order: 'created DESC', include : {character : 'player'} }})
             .$promise
             .then(function(response) {
+                console.log(response);
                 return response;
             });
     }

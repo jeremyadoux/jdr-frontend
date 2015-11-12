@@ -1,4 +1,4 @@
-module.factory('CharacterService', ['$rootScope', 'Character', '$q', '$stateParams', function($rootScope, Character, $q, $stateParams ) {
+module.factory('CharacterService', ['LoopBackAuth', 'Character', '$q', '$stateParams', function(LoopBackAuth, Character, $q, $stateParams ) {
     function createCharacter(name) {
         return Character.create( {name: name} )
             .$promise
@@ -8,7 +8,7 @@ module.factory('CharacterService', ['$rootScope', 'Character', '$q', '$statePara
     }
 
     function findAllByUser() {
-        return Character.find({where:{playerId: $rootScope.currentUser.id}, filter:{ order: 'created DESC' }})
+        return Character.find({where:{playerId: LoopBackAuth.currentUserId}, filter:{ order: 'created DESC' }})
             .$promise
             .then(function(response) {
                 return response;
