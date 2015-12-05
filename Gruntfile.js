@@ -16,7 +16,7 @@ module.exports = function (grunt) {
         // Path configuration from Gruntfile.js
         dev: {
             'urlApiBackend': 'http://192.168.50.6:443',
-            'pathToAllFileStatic': '/jdr-frontend/webapp/static/',
+            'pathToAllFileStatic': '/resources/',
             'vendor': '<%= bowerrc.directory %>',
             'bootstrap': {
                 'js': '<%= '+target+'.vendor %>/bootstrap/js',

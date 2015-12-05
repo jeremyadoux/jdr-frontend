@@ -9,6 +9,10 @@
   "homepage": "http://www.visiativ.com",
   "devDependencies": {
     "bower": "latest",
+    "http": "latest",
+    "path": "latest",
+    "url": "latest",
+    "fs": "latest",
     "grunt": "~0.4.2",
     "grunt-cli": "latest",
     "git": "latest",
