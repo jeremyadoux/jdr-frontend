@@ -44,8 +44,8 @@ module.exports = function (grunt) {
             }
         },
         production: {
-            'urlApiBackend': 'http://192.168.50.6:443',
-            'pathToAllFileStatic': '/jdr-frontend/webapp/static/',
+            'urlApiBackend': 'http://51.254.33.117:443',
+            'pathToAllFileStatic': '/resources/',
             'vendor': '<%= bowerrc.directory %>',
             'bootstrap': {
                 'js': '<%= '+target+'.vendor %>/bootstrap/js',
