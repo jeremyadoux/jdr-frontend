@@ -1,4 +1,4 @@
-module.factory('ChroniqueService', ['Chronique', '$q', '$stateParams', function(Chronique, $q, $stateParams ) {
+module.factory('ChroniqueService', ['LoopBackAuth', 'Chronique', '$q', '$stateParams', function(LoopBackAuth, Chronique, $q, $stateParams ) {
     function createChronique(title, description, character) {
         return Chronique.create( {title: title, description: description, characterId: character} )
             .$promise
@@ -11,13 +11,30 @@ module.factory('ChroniqueService', ['Chronique', '$q', '$stateParams', function(
         return Chronique.find({filter:{ order: 'created DESC', include : {character : 'player'} }})
             .$promise
             .then(function(response) {
-                console.log(response);
+                return response;
+            });
+    }
+
+    function findById(id) {
+        return Chronique.findById({id: id})
+            .$promise
+            .then(function(chronique) {
+                return chronique;
+            });
+    }
+
+    function findAllByUser() {
+        return Chronique.find({where:{playerId: LoopBackAuth.currentUserId}, filter:{ order: 'created DESC', include : {character : 'player'} }})
+            .$promise
+            .then(function(response) {
                 return response;
             });
     }
 
     return {
         createChronique: createChronique,
-        findAll: findAll
+        findAll: findAll,
+        findById: findById,
+        findAllByUser: findAllByUser
     };
 }]);

@@ -46,7 +46,19 @@ module.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, 
             templateUrl: 'profile-edit.html',
             authenticate: true
         })
-        .state('profileEditCharacter', {
+        .state('profile-chronique', {
+            url: '/profile/chronique',
+            controller: 'ChroniqueProfileController',
+            templateUrl: 'chronique-list-profile.html',
+            authenticate: true
+        })
+        .state('profile-chronique-detail', {
+            url: '/profile/chronique/:id',
+            controller: 'ChapterProfileController',
+            templateUrl: 'chronique-detail-profile.html',
+            authenticate: true
+        })
+        .state('profile-edit-character', {
             url: '/profile/edit/character',
             controller: 'ProfileCharacterController',
             templateUrl: 'profile-edit-character.html',
