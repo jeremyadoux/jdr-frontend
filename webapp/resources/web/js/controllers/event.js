@@ -1,7 +1,7 @@
 /**
  * Created by jadoux on 16/08/2015.
  */
-module.controller('EventController', ["$scope", "EventService", "$state", "PubSub", function($scope, EventService, $state, PubSub) {
+module.controller('EventController', ["$scope", "$rootScope", "EventService", "$state", "PubSub", function($scope, $rootScope, EventService, $state, PubSub) {
     /*var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -23,13 +23,7 @@ module.controller('EventController', ["$scope", "EventService", "$state", "PubSu
         console.log("event render");
     };
 
-    $scope.events = [
-        /*{title: 'All Day Event',start: new Date(y, m, 1)},
-        {title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2)},
-        {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
-        {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
-        {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false}*/
-    ];
+    $scope.events = [];
 
     EventService.findAll()
         .then(function(events) {
@@ -38,19 +32,36 @@ module.controller('EventController', ["$scope", "EventService", "$state", "PubSu
                 objDate = {
                     id:  events[i].id,
                     title:  events[i].title,
+                    objEvent: events[i],
                     start:  events[i].dateStarted,
                     end:  events[i].dateEnded
-                }
+                };
 
                 $scope.events.push(objDate);
             }
+
+            PubSub.subscribe({
+                collectionName: 'Event',
+                method : 'POST'
+            }, function(data) {
+                console.log(data);
+                objDate = {
+                    id:  data.id,
+                    title:  data.title,
+                    objEvent: data,
+                    start:  data.dateStarted,
+                    end:  data.dateEnded
+                };
+
+                $scope.events.push(objDate);
+                $scope.$apply();
+            });
         });
 
     $scope.createEvent =  function() {
         EventService.createEvent($scope.event.title, $scope.event.description, $scope.event.dateStarted, $scope.event.dateEnded)
             .then(function(event) {
-                console.log(event);
-                //$state.go('group-detail', { "id": group.id});
+                $rootScope.$broadcast('sendMessageInformation', "L'évènement a été créé avec succès.", 'alert-success');
             });
     };
 
