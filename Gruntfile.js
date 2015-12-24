@@ -44,7 +44,7 @@ module.exports = function (grunt) {
             }
         },
         production: {
-            'urlApiBackend': 'http://backend.petits-papiers.com/',
+            'urlApiBackend': 'http://backend.petits-papiers.com',
             'pathToAllFileStatic': '/resources/',
             'vendor': '<%= bowerrc.directory %>',
             'bootstrap': {
