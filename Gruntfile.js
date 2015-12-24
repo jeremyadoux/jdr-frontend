@@ -15,7 +15,7 @@ module.exports = function (grunt) {
 
         // Path configuration from Gruntfile.js
         dev: {
-            'urlApiBackend': 'http://192.168.50.6:443',
+            'urlApiBackend': 'http://backend.dev',
             'pathToAllFileStatic': '/resources/',
             'vendor': '<%= bowerrc.directory %>',
             'bootstrap': {
@@ -44,7 +44,7 @@ module.exports = function (grunt) {
             }
         },
         production: {
-            'urlApiBackend': 'http://51.254.33.117:443',
+            'urlApiBackend': 'http://backend.petits-papiers.com/',
             'pathToAllFileStatic': '/resources/',
             'vendor': '<%= bowerrc.directory %>',
             'bootstrap': {
