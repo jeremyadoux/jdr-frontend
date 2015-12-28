@@ -47,6 +47,12 @@ module.controller('GroupDetailController', ["$scope", "$rootScope", "GroupServic
             });
     }
 
+    $scope.optionsEditor = {
+        language: 'fr',
+        allowedContent: true,
+        entities: false
+    };
+
     $scope.createMessage = function() {
         GroupService.createMessage($scope.group.id, $scope.form_message.content)
             .then(function(message) {

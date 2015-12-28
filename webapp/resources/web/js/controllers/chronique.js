@@ -29,3 +29,53 @@ module.controller('ChroniqueProfileController', ["$scope", "ChroniqueService", "
         $scope.chroniqueList = chroniques;
     });
 }]);
+
+module.controller('ChroniqueReaderController',  ["$scope", "ChroniqueService", "CharacterService", "ChapterService", "$state", "$stateParams", "PubSub", function($scope, ChroniqueService, CharacterService, ChapterService, $state, $stateParams, PubSub) {
+    $scope.currentChapterKey = 0;
+    //$scope.currentChapter = null;
+
+    if($stateParams.id) {
+        ChroniqueService.findById($stateParams.id)
+            .then(function(chronique){
+                $scope.chronique = chronique;
+            });
+        ChapterService.findAllByChroniqueId($stateParams.id).then(function(chapters) {
+            $scope.chapterList = chapters;
+            if($scope.chapterList.length > 0) {
+                $scope.currentChapter = $scope.chapterList[$scope.currentChapterKey];
+            }
+        });
+    }
+
+    $scope.hasNextChapter = function() {
+        if($scope.chapterList.length > ($scope.currentChapterKey + 1)) {
+            return true;
+        }
+
+        return false;
+    };
+
+    $scope.hasPreviousChapter = function() {
+        if($scope.currentChapterKey > 0) {
+            return true;
+        }
+
+        return false;
+    };
+
+    $scope.nextChapter = function() {
+        if($scope.hasNextChapter()) {
+            $scope.currentChapterKey++;
+            $scope.currentChapter = $scope.chapterList[$scope.currentChapterKey];
+        }
+    };
+
+    $scope.previousChapter = function() {
+        if($scope.hasPreviousChapter()) {
+            $scope.currentChapterKey--;
+            $scope.currentChapter = $scope.chapterList[$scope.currentChapterKey];
+        }
+    };
+
+
+}]);

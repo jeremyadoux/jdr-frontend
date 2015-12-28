@@ -11,6 +11,7 @@
     "angular": "latest",
     "moment": "latest",
     "angular-moment" : "latest",
+    "angular-sanitize": "latest",
     "ngDialog" : "latest",
     "angular-cookies": "latest",
     "angular-resource" : "latest",
@@ -23,6 +24,8 @@
     "jquery-fittext.js" : "latest",
     "angular-live-set" : "latest",
     "socket.io-client": "latest",
-    "angular-native-picker": "latest"
+    "angular-native-picker": "latest",
+    "ckeditor": "latest",
+    "angular-ckeditor": "latest"
   }
 }

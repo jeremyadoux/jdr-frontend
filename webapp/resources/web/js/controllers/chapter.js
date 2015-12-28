@@ -5,6 +5,12 @@ module.controller('ChapterProfileController', ["$scope", "$rootScope",  "Chroniq
         });
     };
 
+    $scope.optionsEditor = {
+        language: 'fr',
+        allowedContent: true,
+        entities: false
+    };
+
     if($stateParams.id) {
         ChroniqueService.findById($stateParams.id)
             .then(function(chronique){
@@ -14,6 +20,4 @@ module.controller('ChapterProfileController', ["$scope", "$rootScope",  "Chroniq
             $scope.chapterList = chapters;
         });
     }
-
-
 }]);

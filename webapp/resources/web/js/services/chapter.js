@@ -8,7 +8,7 @@ module.factory('ChapterService', ['LoopBackAuth', 'Chapter', '$q', '$stateParams
     }
 
     function findAllByChroniqueId(chroniqueId) {
-        return Chapter.find({where:{chroniqueId: chroniqueId}, filter:{ order: 'created DESC' }})
+        return Chapter.find({where:{chroniqueId: chroniqueId}, filter:{ order: 'weight ASC' }})
             .$promise
             .then(function(response) {
                 return response;
