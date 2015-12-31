@@ -35,17 +35,16 @@ module.controller('ChroniqueProfileController', ["$scope", "ChroniqueService", "
 module.controller('ChroniqueReaderController',  ["$scope", "ChroniqueService", "CharacterService", "ChapterService", "$state", "$stateParams", "PubSub", function($scope, ChroniqueService, CharacterService, ChapterService, $state, $stateParams, PubSub) {
     $scope.currentChapterKey = 0;
     //$scope.currentChapter = null;
-
+    $scope.chapterList = [];
     if($stateParams.id) {
-        ChroniqueService.findById($stateParams.id)
-            .then(function(chronique){
-                $scope.chronique = chronique;
+        ChroniqueService.findById($stateParams.id).then(function(chronique){
+            $scope.chronique = chronique;
+            ChapterService.findAllByChroniqueId(chronique).then(function(chapters) {
+                $scope.chapterList = chapters;
+                if($scope.chapterList.length > 0) {
+                    $scope.currentChapter = $scope.chapterList[$scope.currentChapterKey];
+                }
             });
-        ChapterService.findAllByChroniqueId($stateParams.id).then(function(chapters) {
-            $scope.chapterList = chapters;
-            if($scope.chapterList.length > 0) {
-                $scope.currentChapter = $scope.chapterList[$scope.currentChapterKey];
-            }
         });
     }
 
