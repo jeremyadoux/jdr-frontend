@@ -1,7 +1,9 @@
 module.controller('ChroniqueController', ["$scope", "$rootScope", "ChroniqueService", "CharacterService", "$state", "PubSub", function($scope, $rootScope, ChroniqueService, CharacterService, $state, PubSub) {
     $scope.createChronique = function() {
         ChroniqueService.createChronique($scope.chronique.title, $scope.chronique.description, $scope.chronique.character.id).then(function(chronique) {
-            $rootScope.$broadcast('sendMessageInformation', 'Votre chronique a été créée.', 'alert-success');
+            $rootScope.$broadcast('sendMessageInformation', 'Votre chronique a été créée.', 'success');
+            $scope.chronique = null;
+            $scope.createChroniqueForm.$setPristine();
         });
     };
 
@@ -17,7 +19,7 @@ module.controller('ChroniqueController', ["$scope", "$rootScope", "ChroniqueServ
 module.controller('ChroniqueProfileController', ["$scope", "ChroniqueService", "CharacterService", "$state", "PubSub", function($scope, ChroniqueService, CharacterService, $state, PubSub) {
     $scope.createChronique = function() {
         ChroniqueService.createChronique($scope.chronique.title, $scope.chronique.description, $scope.chronique.character.id).then(function(chronique) {
-            $rootScope.$broadcast('sendMessageInformation', 'Votre chronique a été créée.', 'alert-success');
+            $rootScope.$broadcast('sendMessageInformation', 'Votre chronique a été créée.', 'success');
         });
     };
 

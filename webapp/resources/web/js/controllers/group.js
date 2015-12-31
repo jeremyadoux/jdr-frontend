@@ -4,7 +4,8 @@ module.controller('GroupListController', ["$scope", "GroupService", "$state", "P
     $scope.createGroup =  function() {
         GroupService.createGroup($scope.group.title, $scope.group.description)
             .then(function(group) {
-                //$state.go('group-detail', { "id": group.id});
+                $scope.group = null;
+                $scope.createGroupForm.$setPristine();
             });
     };
 
@@ -56,7 +57,8 @@ module.controller('GroupDetailController', ["$scope", "$rootScope", "GroupServic
     $scope.createMessage = function() {
         GroupService.createMessage($scope.group.id, $scope.form_message.content)
             .then(function(message) {
-
+                $scope.form_message = null;
+                $scope.createMessageForm.$setPristine();
             });
     };
 

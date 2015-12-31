@@ -1,8 +1,10 @@
-module.factory('GroupService', ['Group', '$q', '$stateParams', function(Group, $q, $stateParams ) {
+module.factory('GroupService', ['Group', '$q', '$stateParams', '$rootScope', function(Group, $q, $stateParams, $rootScope ) {
     function createGroup(title, description) {
         return Group.create( {title: title, description: description} )
             .$promise
             .then(function(response) {
+                $rootScope.$broadcast('sendMessageInformation', 'Votre groupe a été créée.', 'success');
+
                 return response;
             });
     }

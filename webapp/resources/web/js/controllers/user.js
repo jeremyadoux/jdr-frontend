@@ -6,7 +6,7 @@ module.controller('UserController', ['$rootScope', '$scope', '$state', 'AuthServ
     $scope.login = function() {
         AuthService.login($scope.user.email, $scope.user.password)
             .then(function(response) {
-                $rootScope.$broadcast('sendMessageInformation', 'Vous vous êtes connectés avec succès.', 'alert-success');
+                $rootScope.$broadcast('sendMessageInformation', 'Vous vous êtes connectés avec succès.', 'success');
                 $state.go('home');
             });
     };

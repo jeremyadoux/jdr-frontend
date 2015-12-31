@@ -61,7 +61,9 @@ module.controller('EventController', ["$scope", "$rootScope", "EventService", "$
     $scope.createEvent =  function() {
         EventService.createEvent($scope.event.title, $scope.event.description, $scope.event.dateStarted, $scope.event.dateEnded)
             .then(function(event) {
-                $rootScope.$broadcast('sendMessageInformation', "L'évènement a été créé avec succès.", 'alert-success');
+                $scope.event = null;
+                $scope.addEventForm.$setPristine();
+                $rootScope.$broadcast('sendMessageInformation', "L'évènement a été créé avec succès.", 'success');
             });
     };
 

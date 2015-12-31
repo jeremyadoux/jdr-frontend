@@ -1,10 +1,12 @@
-module.controller('MessageController', ["$scope", "$timeout", function($scope, $timeout) {
+module.controller('MessageController', ["$scope", "$timeout", "Notification", function($scope, $timeout, Notification) {
     $scope.delay = "5000"; //En millisecondes
     $scope.delayStarted = false;
     $scope.messageQueue = [];
 
     $scope.$on('sendMessageInformation', function(event, message, type) {
-        if($scope.delayStarted) {
+        Notification[type]({message: message, delay: 5000, positionX: 'center'});
+
+        /*if($scope.delayStarted) {
             $scope.messageQueue.unshift({'message': message, 'type': type});
         } else {
             $scope.delayStarted = true;
@@ -24,6 +26,6 @@ module.controller('MessageController', ["$scope", "$timeout", function($scope, $
                     $scope.type = false;
                 }
             }, $scope.delay);
-        }
+        }*/
     });
 }]);
